@@ -10,8 +10,8 @@ public class CustomerUI {
     public JFrame view;
 
     public JButton btnMakePurchase = new JButton("Make a Purchase");
-    public JButton btnCancelPurchase = new JButton("Cancel a Purchase");
     public JButton btnViewPurchases = new JButton("View Purchase History");
+    public JButton btnProductSearch = new JButton("Product Search");
 
     public CustomerUI(final UserModel user) {
 
@@ -31,14 +31,14 @@ public class CustomerUI {
 
         JPanel panelUser = new JPanel(new FlowLayout());
         panelUser.add(new JLabel("Fullname: " + user.mFullname));
-        panelUser.add(new JLabel("CustomerID: " + user.mCustomerID));
+
 
         view.getContentPane().add(panelUser);
 
         JPanel panelButtons = new JPanel(new FlowLayout());
         panelButtons.add(btnMakePurchase);
         panelButtons.add(btnViewPurchases);
-        panelButtons.add(btnCancelPurchase);
+        panelButtons.add(btnProductSearch);
 
         view.getContentPane().add(panelButtons);
 
@@ -54,7 +54,15 @@ public class CustomerUI {
         btnMakePurchase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ManageCustomerUI ui = new ManageCustomerUI();
+                AddPurchaseUI ui = new AddPurchaseUI();
+                ui.run();
+            }
+        });
+
+        btnMakePurchase.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ProductSearchUI ui = new ProductSearchUI();
                 ui.run();
             }
         });

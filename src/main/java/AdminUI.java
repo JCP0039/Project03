@@ -11,9 +11,8 @@ public class AdminUI {
 
     public JFrame view;
 
-    public JButton btnSystemConfig = new JButton("System Configuration");
-    public JButton btnAddNewUser = new JButton("Add a new User");
-    public JButton btnDeleteUSer = new JButton("Delete User");
+    public JButton btnManageUsers = new JButton("Manage Users");
+
 
     public AdminUI(final UserModel user) {
 
@@ -33,14 +32,13 @@ public class AdminUI {
 
         JPanel panelUser = new JPanel(new FlowLayout());
         panelUser.add(new JLabel("Fullname: " + user.mFullname));
-        panelUser.add(new JLabel("AdminID: " + user.mCustomerID));
+
 
         view.getContentPane().add(panelUser);
 
         JPanel panelButtons = new JPanel(new FlowLayout());
-        panelButtons.add(btnSystemConfig);
-        panelButtons.add(btnDeleteUSer);
-        panelButtons.add(btnAddNewUser);
+        panelButtons.add(btnManageUsers);
+
 
         view.getContentPane().add(panelButtons);
 
@@ -48,18 +46,12 @@ public class AdminUI {
 
         //functionality currently not implemented. These two buttons mirror the customer options for now.
         //***********************************************************************************************
-        btnDeleteUSer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                PurchaseHistoryUI ui = new PurchaseHistoryUI(user);
-                ui.view.setVisible(true);
-            }
-        });
 
-        btnSystemConfig.addActionListener(new ActionListener() {
+
+        btnManageUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ManageCustomerUI ui = new ManageCustomerUI();
+                ManageUserUI ui = new ManageUserUI();
                 ui.run();
             }
         });

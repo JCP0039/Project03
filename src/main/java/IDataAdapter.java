@@ -31,6 +31,8 @@ public interface IDataAdapter {
 
         PurchaseModel loadPurchase(int mProductID);
 
+        public int saveUser(UserModel user);
+
 
         //public int saveUser(UserModel user);
 

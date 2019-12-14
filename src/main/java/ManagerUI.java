@@ -7,12 +7,17 @@ import java.awt.event.ActionListener;
 public class ManagerUI {
     public JFrame view;
 
+    public UserModel user = null;
+
     public JButton btnManageCustomer = new JButton("Manage Customers");
     public JButton btnManageProduct = new JButton("Manage Products");
     public JButton btnManagePurchase = new JButton("Manage Purchases");
+    public JButton btnViewPurchases = new JButton("View Purchases");
 
     public ManagerUI() {
         this.view = new JFrame();
+
+        this.user = user;
 
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         view.setTitle("Store Management System - Manager View");
@@ -28,6 +33,7 @@ public class ManagerUI {
         panelButtons.add(btnManageProduct);
         panelButtons.add(btnManageCustomer);
         panelButtons.add(btnManagePurchase);
+        panelButtons.add(btnViewPurchases);
 
         view.getContentPane().add(panelButtons);
 
@@ -55,5 +61,14 @@ public class ManagerUI {
                 ui.run();
             }
         });
+
+        btnViewPurchases.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                PurchaseHistoryUI ui = new PurchaseHistoryUI(user);
+                ui.view.setVisible(true);
+            }
+        });
+
     }
 }

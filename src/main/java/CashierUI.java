@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 public class CashierUI {
     public JFrame view;
 
-    public JButton btnAddPurchase = new JButton("Add New Purchase");
+    public JButton btnManagePurchase = new JButton("Manage Purchases");
+    public JButton btnManageCustomer = new JButton("Manage Customers");
 
     public CashierUI() {
         this.view = new JFrame();
 
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         view.setTitle("Store Management System - Cashier View");
-        view.setSize(400, 300);
+        view.setSize(800, 300);
         view.getContentPane().setLayout(new BoxLayout(view.getContentPane(), BoxLayout.PAGE_AXIS));
 
         JLabel title = new JLabel("Store Management System");
@@ -22,17 +23,28 @@ public class CashierUI {
         view.getContentPane().add(title);
 
         JPanel panelButtons = new JPanel(new FlowLayout());
-        panelButtons.add(btnAddPurchase);
+        panelButtons.add(btnManagePurchase);
+        panelButtons.add(btnManageCustomer);
 
         view.getContentPane().add(panelButtons);
 
 
-        btnAddPurchase.addActionListener(new ActionListener() {
+        btnManagePurchase.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    ManagePurchaseUI ap = new ManagePurchaseUI();
+                    ap.run();
+                }
+        });
+
+        btnManageCustomer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                AddPurchaseUI ap = new AddPurchaseUI();
+                ManageCustomerUI ap = new ManageCustomerUI();
                 ap.run();
             }
         });
+
+
     }
 }

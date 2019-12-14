@@ -77,6 +77,11 @@ public class NetworkDataAdapter implements IDataAdapter {
     }
 
     @Override
+    public int saveUser(UserModel user) {
+        return 0;
+    }
+
+    @Override
     public PurchaseHistoryModel loadPurchaseHistory(int customerID) {
         msg.code = MessageModel.GET_PURCHASE_LIST;
         msg.data = Integer.toString(customerID);
@@ -111,4 +116,8 @@ public class NetworkDataAdapter implements IDataAdapter {
         }
 
     }
+
+
+
+
 }

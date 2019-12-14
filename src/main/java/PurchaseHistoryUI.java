@@ -33,7 +33,7 @@ public class PurchaseHistoryUI {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         view.getContentPane().add(title);
 
-        PurchaseHistoryModel list = StoreManager.getInstance().getDataAdapter().loadPurchaseHistory(user.mCustomerID);
+        PurchaseHistoryModel list = StoreManager.getInstance().getDataAdapter().loadPurchaseHistory(2);
         DefaultListModel<String> data = new DefaultListModel<>();
 
         for (PurchaseModel purchase : list.purchases)

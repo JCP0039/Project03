@@ -7,7 +7,7 @@ public class UserModel {
 
     public String mUsername, mPassword, mFullname;
     public int mUserType;
-    public int mCustomerID; // if usertype is CUSTOMER
+
 
     public String toString() {
         StringBuilder sb = new StringBuilder("(");

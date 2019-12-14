@@ -37,6 +37,50 @@ public class SQLiteDataAdapter implements IDataAdapter {
         return CONNECTION_CLOSE_OK;
     }
 
+
+    public UserModel loadUser(int userName) {
+        UserModel user = null;
+
+        try {
+            String sql = "SELECT Username, Password, Fullname, Usertype FROM Users WHERE Username = " + userName;
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                user = new UserModel();
+                user.mUsername = rs.getString("Username");
+                user.mPassword = rs.getString("Password");
+                user.mFullname = rs.getString("Fullname");
+                user.mUserType = rs.getInt("Usertype");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
+    }
+    public int saveUser(UserModel user) {
+        try {
+            Statement stmt = conn.createStatement();
+            UserModel p = loadUser(user.mUsername); // check if this product exists
+            if (p != null) {
+                stmt.executeUpdate("DELETE FROM Users WHERE Username = " + user.mUsername);
+            }
+
+            String sql = "INSERT INTO Users(Username, Password, Fullname, Usertype) VALUES " + user;
+            System.out.println(sql);
+
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            String msg = e.getMessage();
+            System.out.println(msg);
+            if (msg.contains("UNIQUE constraint failed"))
+                return PRODUCT_SAVE_FAILED;
+        }
+
+        return PRODUCT_SAVE_OK;
+    }
+
     public ProductModel loadProduct(int productID) {
         ProductModel product = null;
 
@@ -221,8 +265,7 @@ public class SQLiteDataAdapter implements IDataAdapter {
                 user.mPassword = rs.getString("Password");
                 user.mFullname = rs.getString("Fullname");
                 user.mUserType = rs.getInt("Usertype");
-                if (user.mUserType == UserModel.CUSTOMER)
-                    user.mCustomerID = rs.getInt("CustomerID");
+
             }
 
         } catch (Exception e) {
